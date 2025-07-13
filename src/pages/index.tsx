@@ -1,90 +1,103 @@
-// pages/index.tsx
-import { useEffect, useState } from 'react'
-import Tabs from '../components/Tabs'
-import TagFilter from '../components/TagFilter'
-import Section from '../components/Section'
-import DownloadButton from '../components/DownloadButton'
+import React, { useState } from "react";
+import FileDropZone from "../components/FileDropZone";
+import { extractTextFromPDF } from "../utils/pdfReader";
+import { parseCVText, ParsedCV } from "../utils/cvParser";
+import { marked } from "marked";
 
-export default function HomePage() {
-  const [cvData, setCvData] = useState<any>(null)
+const App: React.FC = () => {
+  const [parsedCV, setParsedCV] = useState<ParsedCV | null>(null);
+  const [iaResult, setIaResult] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [roles, setRoles] = useState<string[]>([]);
+  const [selectedRole, setSelectedRole] = useState<string | null>(null);
+  const [sobreMi, setSobreMi] = useState<Record<string, string>>({});
+  const [experienciaAdaptada, setExperienciaAdaptada] = useState<Record<string, string>>({});
+  
 
-  // Cargar el JSON (puede estar en /data/roberto-cv.json o desde una API)
-  useEffect(() => {
-    fetch('/data/roberto-cv.json')
-      .then((res) => res.json())
-      .then((data) => setCvData(data))
-  }, [])
 
-  if (!cvData) {
-    return <p className="p-6 text-gray-600">Cargando CV...</p>
-  }
+  const handleFileUpload = async (file: File) => {
+    try {
+      setLoading(true);
+      
+      const text = await extractTextFromPDF(file);
+      const parsed = parseCVText(text);
+      setParsedCV(parsed);
+
+      // 🔁 Llamar a tu API route
+      const res = await fetch("/api/groq-chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ parsedCV: parsed }),
+      });
+
+      const data = await res.json();
+      setRoles(data.roles || []);
+      setSobreMi(data.sobreMi || {});
+      setExperienciaAdaptada(data.experienciaAdaptada || {});
+      setSelectedRole(data.roles?.[0] || null);
+
+
+      setIaResult(data.message);
+    } catch (error) {
+      console.error("Error:", error);
+      setIaResult("Ocurrió un error al procesar el CV.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <main className="max-w-3xl mx-auto px-6 py-8 font-sans">
-      <h1 className="text-3xl font-bold mb-4 text-center text-gray-800">
-        Generador de Hoja de Vida
-      </h1>
+    <div className="max-w-2xl mx-auto mt-10 px-4">
+      <h1 className="text-2xl font-bold text-center mb-4">🧠 CV Analyzer</h1>
+      <FileDropZone onFileUpload={handleFileUpload} />
 
-      <Tabs />
-      <TagFilter />
-      <DownloadButton />
+      {roles.length > 0 && (
+  <div className="mt-6">
+    <h2 className="text-lg font-semibold mb-2">🧩 Roles sugeridos:</h2>
+    <div className="flex flex-wrap gap-2">
+      {roles.map((role) => (
+        <button
+          key={role}
+          className={`px-3 py-1 rounded border text-sm ${
+            role === selectedRole
+              ? "bg-blue-600 text-white"
+              : "bg-gray-100 hover:bg-gray-200"
+          }`}
+          onClick={() => setSelectedRole(role)}
+        >
+          {role}
+        </button>
+      ))}
+    </div>
+  </div>
+)}
 
-      <div id="cv-preview" className="mt-6 p-6 bg-white shadow rounded text-gray-800 space-y-6">
-        <Section title="Sobre mí" sectionKey="sobreMi">
-          <p>{cvData.about}</p>
-        </Section>
+{selectedRole && (
+  <div className="mt-6 bg-white p-4 rounded shadow border space-y-4">
+    <h2 className="font-bold text-lg">🎯 CV Adaptado para: {selectedRole}</h2>
 
-        <Section title="Habilidades duras" sectionKey="skillsDuras">
-          <ul className="list-disc pl-5">
-            {cvData.skills?.hard?.map((skill: string, i: number) => (
-              <li key={i}>{skill}</li>
-            ))}
-          </ul>
-        </Section>
-
-        <Section title="Habilidades blandas" sectionKey="skillsBlandas">
-          <ul className="list-disc pl-5">
-            {cvData.skills?.soft?.map((skill: string, i: number) => (
-              <li key={i}>{skill}</li>
-            ))}
-          </ul>
-        </Section>
-
-        <Section title="Experiencia" sectionKey="experiencia">
-          {cvData.experience?.map((job: any, i: number) => (
-            <div key={i} className="mb-3">
-              <h3 className="font-semibold">{job.role} – {job.company}</h3>
-              <p className="text-sm text-gray-600">{job.period}</p>
-              <p>{job.description}</p>
-            </div>
-          ))}
-        </Section>
-
-        <Section title="Educación" sectionKey="educacion">
-          {cvData.education?.map((edu: any, i: number) => (
-            <div key={i}>
-              <p className="font-semibold">{edu.degree}</p>
-              <p className="text-sm text-gray-600">{edu.institution} – {edu.year}</p>
-            </div>
-          ))}
-        </Section>
-
-        <Section title="Certificados" sectionKey="certificados">
-          <ul className="list-disc pl-5">
-            {cvData.certificates?.map((cert: string, i: number) => (
-              <li key={i}>{cert}</li>
-            ))}
-          </ul>
-        </Section>
-
-        <Section title="Proyectos destacados" sectionKey="proyectos">
-          <ul className="list-disc pl-5">
-            {cvData.projects?.map((proj: string, i: number) => (
-              <li key={i}>{proj}</li>
-            ))}
-          </ul>
-        </Section>
+    {sobreMi[selectedRole] && (
+      <div>
+        <h3 className="font-semibold">🙋 Sobre mí:</h3>
+        <p>{sobreMi[selectedRole]}</p>
       </div>
-    </main>
-  )
-}
+    )}
+
+    {experienciaAdaptada[selectedRole] && (
+      <div>
+        <h3 className="font-semibold">💼 Experiencia:</h3>
+        <p>{experienciaAdaptada[selectedRole]}</p>
+      </div>
+    )}
+  </div>
+)}
+
+
+      
+    </div>
+  );
+};
+
+export default App;

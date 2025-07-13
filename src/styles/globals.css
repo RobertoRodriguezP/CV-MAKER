@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
+html, body {
+  font-family: 'Inter', sans-serif;
+}
+html, body {
+  @apply bg-gradient-to-b from-gray-100 to-white font-sans text-gray-900;
+}
+
+button {
+  @apply transition-all duration-300 ease-in-out;
+}

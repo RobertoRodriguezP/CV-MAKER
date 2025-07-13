@@ -1,4 +1,6 @@
 {
+  "name": "Roberto Rodríguez",
+  "title": "Data Engineer · Full-Stack Developer · DevOps · Pentester",
   "about": "Ingeniero de Datos con experiencia en arquitectura de datos, proyectos de migración, automatización de ETL y desarrollo de APIs robustas. Apasionado por la gobernanza de datos, inteligencia de negocios, y la integración de tecnologías como chatbots y sistemas POS.",
   "skills": {
     "hard": [
@@ -25,19 +27,34 @@
       "role": "Ingeniero de Software Senior - IT",
       "company": "BMA - DELL Technologies",
       "period": "Ago 2022 - Ago 2024",
-      "description": "Diseño, desarrollo y pruebas de software. Implementación de soluciones alineadas a los objetivos del negocio. Coordinación con equipos multidisciplinarios y pruebas de rendimiento."
+      "descriptions": {
+        "general": "Diseño, desarrollo y pruebas de software. Coordinación con equipos y soluciones alineadas al negocio.",
+        "técnico": "Implementé soluciones backend eficientes con foco en rendimiento, pruebas y estándares técnicos.",
+        "freelance": "Diseñé módulos reutilizables y mantenibles para múltiples clientes remotos.",
+        "corporativo": "Lideré QA y mejoras de procesos en entornos productivos empresariales."
+      }
     },
     {
       "role": "Ingeniero de Software Senior - IT",
       "company": "Mealkitz / Softka Colombia / Banitsmo",
       "period": "Ago 2024 - Actual",
-      "description": "Implementación de sistemas para optimizar procesos. Estrategias de protección de datos, desarrollo de arquitecturas eficientes y apoyo técnico continuo."
+      "descriptions": {
+        "general": "Implementación de sistemas para optimizar procesos y proteger datos.",
+        "técnico": "Arquitectura de datos eficiente y desarrollo de APIs para sistemas de alta demanda.",
+        "freelance": "Soluciones a medida en sistemas POS e integraciones con WhatsApp y CRM.",
+        "corporativo": "Estandarización tecnológica y gestión de proyectos estratégicos de TI."
+      }
     },
     {
       "role": "QA DBA Analyst",
       "company": "Sonda - Caja de Ahorros",
       "period": "Sep 2021 - Ago 2022",
-      "description": "Auditorías de datos, documentación de metadatos y validación de tablas bajo estándares DAMA-DMBOK2."
+      "descriptions": {
+        "general": "Auditorías, documentación de metadatos y control de calidad en datos críticos.",
+        "técnico": "Análisis de integridad de datos con herramientas Python y SQL sobre DB2.",
+        "freelance": "Consultoría puntual sobre calidad de información y gobernanza de datos.",
+        "corporativo": "Implementación de estándares DAMA-DMBOK2 y reporte de cumplimiento regulatorio."
+      }
     }
   ],
   "education": [

@@ -21,11 +21,12 @@ export default function TagFilter() {
         <button
           key={key}
           onClick={() => toggleSection(key as keyof typeof sections)}
-          className={`px-3 py-1 text-sm rounded-full border font-medium transition ${
-            sections[key as keyof typeof sections]
-              ? 'bg-blue-600 text-white border-blue-600'
-              : 'bg-white text-gray-800 border-gray-400'
-          }`}
+          className={`px-4 py-1.5 text-sm rounded-full font-medium transition-all duration-300 ease-in-out shadow
+  ${
+    sections[key as keyof typeof sections]
+      ? 'bg-indigo-500 text-white shadow-md'
+      : 'bg-white text-gray-800 border border-gray-300 hover:bg-gray-100'
+  }`}
         >
           {label}
         </button>

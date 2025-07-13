@@ -22,10 +22,11 @@ export default function DownloadButton() {
 
   return (
     <button
-      onClick={handleDownload}
-      className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-    >
-      Descargar en PDF
-    </button>
+  onClick={handleDownload}
+  className="bg-gradient-to-r from-green-500 to-lime-500 text-white font-semibold px-6 py-2 rounded-full shadow-md hover:scale-105 hover:shadow-lg transition-transform duration-300"
+>
+  Download as PDF
+</button>
+
   )
 }
