@@ -1,40 +1,91 @@
-<<<<<<< HEAD
-# CV-MAKER
-=======
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CV-MAKER 🧠💼
 
-## Getting Started
+An interactive, customizable, and downloadable resume builder built with **Next.js**, **Zustand**, **TailwindCSS**, and **html2pdf.js**.  
+Switch between professional profiles like **Technical**, **Freelance**, or **Corporate**, and show/hide CV sections dynamically.
 
-First, run the development server:
+---
 
+## ✨ Features
+
+- Tab-based switching between CV types (General, Technical, Freelance, Corporate)
+- Dynamic section visibility (About, Skills, Experience, etc.)
+- Loaded from JSON for easy editing
+- Export as beautifully styled PDF
+- Styled with TailwindCSS for a modern, minimalist feel
+- Zustand global state management
+
+---
+
+## 📦 Installation
+
+### 1. Clone the repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/RobertoRodriguezP/CV-MAKER.git
+cd CV-MAKER
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install dependencies
+```bash
+npm install
+```
+or
+```bash
+yarn install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Run the development server
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Visit `http://localhost:3000` to see the app.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 📁 Folder Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+/public/data/roberto-cv.json   ← Personal data in JSON
+/src/components/               ← UI components (Tabs, Sections, Filter, Button)
+/src/pages/index.tsx           ← Main page
+/src/store/cvStore.ts          ← Zustand state logic
+/styles/globals.css            ← Global styles (Tailwind)
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 📄 JSON Structure Example (`/public/data/roberto-cv.json`)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```json
+{
+  "about": "...",
+  "skills": {
+    "hard": ["Python", "ETL", "SQL"],
+    "soft": ["Leadership", "Communication"]
+  },
+  "experience": [...],
+  "education": [...],
+  "certificates": [...],
+  "projects": [...]
+}
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
->>>>>>> bde5b67 (Initial commit from Create Next App)
+---
+
+## 🛠️ Customization
+
+- Edit `cvStore.ts` to control which sections show per profile.
+- Change fonts, spacing, or colors via `TailwindCSS` utility classes.
+- Replace content easily by updating `roberto-cv.json`.
+
+---
+
+## 📤 Export as PDF
+
+Click the green **"Download as PDF"** button — it converts the currently visible sections into a polished PDF document using `html2pdf.js`.
+
+---
+
+## 📘 License
+
+MIT License

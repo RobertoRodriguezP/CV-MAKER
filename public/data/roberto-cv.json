@@ -1,0 +1,72 @@
+{
+  "about": "Ingeniero de Datos con experiencia en arquitectura de datos, proyectos de migración, automatización de ETL y desarrollo de APIs robustas. Apasionado por la gobernanza de datos, inteligencia de negocios, y la integración de tecnologías como chatbots y sistemas POS.",
+  "skills": {
+    "hard": [
+      "Python (Pandas, PySpark)",
+      "ETL con SQL y Docker",
+      "Data Governance (DAMA-DMBOK2)",
+      "Power BI y Metabase",
+      "FastAPI, Node.js, Express",
+      "PostgreSQL, SQLite, MongoDB",
+      "Docker, Kubernetes, Azure, GCP",
+      "OAuth, SSO, Keycloak"
+    ],
+    "soft": [
+      "Liderazgo técnico",
+      "Comunicación clara",
+      "Pensamiento analítico",
+      "Adaptabilidad",
+      "Gestión del tiempo",
+      "Resolución de problemas"
+    ]
+  },
+  "experience": [
+    {
+      "role": "Ingeniero de Software Senior - IT",
+      "company": "BMA - DELL Technologies",
+      "period": "Ago 2022 - Ago 2024",
+      "description": "Diseño, desarrollo y pruebas de software. Implementación de soluciones alineadas a los objetivos del negocio. Coordinación con equipos multidisciplinarios y pruebas de rendimiento."
+    },
+    {
+      "role": "Ingeniero de Software Senior - IT",
+      "company": "Mealkitz / Softka Colombia / Banitsmo",
+      "period": "Ago 2024 - Actual",
+      "description": "Implementación de sistemas para optimizar procesos. Estrategias de protección de datos, desarrollo de arquitecturas eficientes y apoyo técnico continuo."
+    },
+    {
+      "role": "QA DBA Analyst",
+      "company": "Sonda - Caja de Ahorros",
+      "period": "Sep 2021 - Ago 2022",
+      "description": "Auditorías de datos, documentación de metadatos y validación de tablas bajo estándares DAMA-DMBOK2."
+    }
+  ],
+  "education": [
+    {
+      "degree": "Licenciatura en Ingeniería de Sistemas y Computación",
+      "institution": "Universidad Tecnológica de Panamá",
+      "year": "2015 - 2024"
+    },
+    {
+      "degree": "Diplomado en Ciberseguridad",
+      "institution": "Universidad Tecnológica de Panamá",
+      "year": "2023"
+    }
+  ],
+  "certificates": [
+    "Cisco: Introducción a Linux (2020)",
+    "Microsoft Power BI Seminar (2019)",
+    "AI-900 Microsoft",
+    "Curso de SQL y MySQL - Platzi",
+    "Curso de Hacking Web - Platzi",
+    "Web Development con Gatsby JS",
+    "Snowflake & Snowpark ML",
+    "Bootcamp SOC Analyst v4 – DOJO"
+  ],
+  "projects": [
+    "Catálogo Web Interactivo con React, Node.js y SQLite",
+    "Chatbot NLP para WhatsApp con órdenes y sugerencias",
+    "Dashboard BI de restaurantes (promociones, ventas, operaciones)",
+    "Hardening de infraestructura con bajo presupuesto",
+    "E-commerce desplegado con Docker Compose y microservicios"
+  ]
+}
